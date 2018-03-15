@@ -38,3 +38,14 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 
 
 })
+/**
+ * Documentación de update:
+ * para actualizar un documento lo que vamos a hacer es usar el método findOneAndUpdate
+ * que toma varios objetos como parametros:
+ * lo primero que toma es un objeto la información con la que vamos a hacer match 
+ * El sugundo parametro tambien es un objeto que contendrá las actualizaciones que vamos a hacer
+ * y hay que tener en cuenta que se deben usar los operadores de actualizacion para este caso
+ * usamos $set y le enviamos un objeto con la nueva información
+ * El tercer paramtro que recibe la instruccion de si quermos el objeto original
+ * y luego lo tratamos como una promesa 
+ */
