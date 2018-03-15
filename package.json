@@ -9,6 +9,7 @@
   "author": "Angel Manuel Góez Giraldo",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.0.4"
+    "mongodb": "^3.0.4",
+    "mongoose": "^5.0.10"
   }
 }
