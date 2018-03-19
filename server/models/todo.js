@@ -8,7 +8,7 @@ const Todo = mongoose.model('Todo',{
 			trim:true
     },
     completed:{
-			type:boolean,
+			type:Boolean,
 			default:false
     },
     completedAt:{
