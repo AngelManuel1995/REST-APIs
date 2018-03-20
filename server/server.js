@@ -9,7 +9,10 @@ const { User } = require('./models/user');
 
 
 const app = express();
+//Middleware
 app.use(bodyParse.json());
+
+// POST /todos
 app.post('/todos', ( req, res ) => {
 	
 	let todo = new Todo({
@@ -22,6 +25,18 @@ app.post('/todos', ( req, res ) => {
 		res.status(400).send( err )
 	})
 })
+
+// GET /todos
+app.get('/todos', ( req, res ) => {
+
+	Todo.find().then( (todos) => {
+		res.send({todos})
+	}, (e) => {
+		res.status(400).send(e)
+	})
+
+})
+
 
 app.listen('3000',() => {
 	console.log('Started on 3000 port')
