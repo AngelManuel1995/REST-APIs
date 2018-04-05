@@ -32,10 +32,10 @@ const {User} = require('./../server/models/user');
 // })
 
 let id = '5aadd9189d9ee2433993f923';
-User.findById(id).then((user) => {
-    if(!user){
-        return console.log('Unable to find user')
-    }
-    console.log(JSON.stringify(user,undefined,2));
+User.findById(id).then(( user ) => {
+	if( !user ){
+		return console.log('Unable to find user')
+	}
+	console.log(JSON.stringify(user,undefined,2));
 
 }).catch( e => console.log(e))
