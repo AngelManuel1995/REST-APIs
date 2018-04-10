@@ -1,11 +1,11 @@
 const { MongoClient, ObjectID } = require('mongodb');
 
-//Podemos generar nuestros pripios ObjectID s de la siuiente manera.
-// let obj1 = new ObjectID()
-// let obj2 = new ObjectID()
-// console.log(obj1 + " -- " + obj2)
-
-
+/*
+	//Podemos generar nuestros pripios ObjectID s de la siuiente manera.
+	// let obj1 = new ObjectID()
+	// let obj2 = new ObjectID()
+	// console.log(obj1 + " -- " + obj2)
+*/
 MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	
   if( err ){
@@ -13,7 +13,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	}
 	const db = client.db('TodoApp')
 	console.log('Connected to MongoDB server');
-
+  /*
 	// db.collection('Todos').insertOne({
 	// 	text:'Something to do',
 	// 	completed:false
@@ -39,7 +39,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	// 		console.log(result.ops[0]._id.getTimestamp())
 	
 	// })
-
+  */
 	client.close();
 
 })
