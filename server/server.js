@@ -50,6 +50,7 @@ app.get('/todos/:id', ( req, res ) => {
 
 	//Buscamos el id usando findById del mongoose
 	Todo.findById(id).then( (todo) => {
+		//todo puede estar vacio, porque no hay registro con ese id
 		if( !todo ){
 			return res.status(404).send();
 		}
