@@ -5,7 +5,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 		return console.log('Unable to connect to mongodb')
 	}
 	const db = client.db('TodoApp');
-	
+  /*
 	//deleteMany
 	// db.collection('Users').deleteMany({
 	//     age:26
@@ -25,6 +25,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	// }).then( ( result ) => {
 	//     console.log( result )
 	// })
+  */
 
 	db.collection('Users').deleteMany({
 		name:'Daniela'

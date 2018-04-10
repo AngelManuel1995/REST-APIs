@@ -7,7 +7,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	}
 
 	const db = client.db('TodoApp')
-
+/*
 	//findOneAndUpdate
 	// db.collection('Users').findOneAndUpdate({
 	// 	_id: new ObjectID('5aa899fc53f2db509f9ae1cd')
@@ -20,7 +20,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', ( err, client ) => {
 	// }).then( ( result) => {
 	// 	console.log( result )
 	// })
-
+*/
 	db.collection('Users').findOneAndUpdate({
 		_id: new ObjectID('5aa899fc53f2db509f9ae1cd')
 	},{
