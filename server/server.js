@@ -56,19 +56,32 @@ app.get('/todos/:id', ( req, res ) => {
 		}
 		//Retornamos el JSON del body
 		res.send({todo});
-	}, (e) => {
-		//Id valido pero no lo encuentra en la base de datos
+	}).catch( (e) => {
 		res.status(400).send();
 	})
 	
 })
 
-// DELETE /todo/:id
+// DELETE /todos/:id
 app.delete('/todos/:id', ( req, res ) => {
+	
+	let id = req.params.id;
+	if( !ObjectID.isValid(id) ){
+		return res.status(404).send();
+	}
 
+	Todo.findByIdAndRemove(id).then( (todo) => {
+		if(!todo){
+			return res.status(404).send();
+		}
+		res.send({todo});
+
+	}).catch( (e) => {
+		res.status(400).send();
+	})
 })
 
-// PATCH /todo/:id
+// PATCH /todos/:id
 app.patch('/todos/:id', ( req, res ) => {
 
 })
