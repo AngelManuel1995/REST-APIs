@@ -11,9 +11,10 @@ const { User } = require('./models/user');
 
 
 const app = express();
-//Middleware
+//Middleware para que podamos retornar json
 app.use(bodyParse.json());
 
+// ******************* todos CRUD *******************
 // POST /todos
 app.post('/todos', ( req, res ) => {
 	
@@ -21,8 +22,8 @@ app.post('/todos', ( req, res ) => {
 		text:req.body.text
 	})
 
-	todo.save().then( ( doc ) => {
-		res.send(doc)
+	todo.save().then( ( todo ) => {
+		res.send(todo)
 	}, ( err ) => {
 		res.status(400).send( err )
 	})
@@ -110,6 +111,25 @@ app.patch('/todos/:id', ( req, res ) => {
 	
 
 })
+
+
+// ******************* user CRUD *******************
+
+// POST /users
+app.post('/users', ( req, res ) => {
+
+	let userParams = _.pick( req.body, ['email','password'])
+	let user = new User(userParams)
+
+	user.save().then( (user) => {
+		res.send(user);
+	}, (err) => {
+		res.status(400).send(err)
+	})
+
+})
+
+
 
 
 app.listen('3000',() => {
