@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const validator = require('validator');
-const jwt = require('jsonwebtoken');
-const _ = require('lodash');
+const mongoose = require('mongoose') 
+const validator = require('validator') 
+const jwt = require('jsonwebtoken') 
+const _ = require('lodash') 
 const bcrypt = require('bcryptjs')
 
 let UserSchema = new mongoose.Schema({
@@ -32,30 +32,32 @@ let UserSchema = new mongoose.Schema({
 			required:true
 		}
 	}]
-});
+}) 
 
 UserSchema.methods.toJSON = function () {
-	let user = this;
-	let userObject = user.toObject();
+	let user = this 
+	let userObject = user.toObject() 
 
-	return _.pick(userObject,['_id','email']);
+	return _.pick(userObject,['_id','email']) 
 }
 
 UserSchema.methods.generateAuthToken = function(){
-	let user = this;
-	let access = 'auth';
-	let token = jwt.sign( { _id: user._id.toHexString(), access }, '5991legna' );
+	let user = this 
+	console.log("user methods ", user)
+	let access = 'auth' 
+	let token = jwt.sign( { _id: user._id.toHexString(), access }, '5991legna' ) 
 
-	user.tokens = user.tokens.concat([{access, token}]);
+	user.tokens = user.tokens.concat([{access, token}]) 
 
 	return user.save().then( () => {
-		return token;
+		return token 
 	})
 }
 
 UserSchema.statics.findByToken = function( token ){
-	let User = this;
-	let decoded;
+	let User = this 
+	console.log("\n user statics ", User)
+	let decoded 
 
 	try{
 		decoded = jwt.verify(token, '5991legna')
@@ -110,6 +112,19 @@ UserSchema.statics.findByCredentials = function(email, password){
 	})
 }
 
-const User = mongoose.model( 'User', UserSchema );
+UserSchema.methods.removeToken = function( token ){
+	let user = this
+	
+  return user.update({
+		$pull:{
+			tokens:{ token }
+			// tokens:{
+			// 	token:token
+			// }
+		}
+	})
+}
+
+const User = mongoose.model( 'User', UserSchema ) 
 
 module.exports = { User }
