@@ -17,10 +17,11 @@ app.use(bodyParse.json())
 
 // ******************* todos CRUD *******************
 // POST /todos
-app.post('/todos', ( req, res ) => {
+app.post('/todos', authenticate, ( req, res ) => {
 	
 	let todo = new Todo({
-		text:req.body.text
+		text:req.body.text,
+		_creator:req.user._id
 	})
 
 	todo.save().then( ( todo ) => {
@@ -33,7 +34,9 @@ app.post('/todos', ( req, res ) => {
 // GET /todos
 app.get('/todos', ( req, res ) => {
 
-	Todo.find().then( (todos) => {
+	Todo.find({
+		_creator:req.user._id
+	}).then( (todos) => {
 		res.send({todos})
 	}, (e) => {
 		res.status(400).send(e)
