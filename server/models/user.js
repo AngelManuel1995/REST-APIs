@@ -56,15 +56,11 @@ UserSchema.methods.generateAuthToken = function(){
 
 UserSchema.statics.findByToken = function( token ){
 	let User = this 
-	console.log("\n user statics ", User)
 	let decoded 
 
 	try{
 		decoded = jwt.verify(token, '5991legna')
 	}catch(e){
-		// return new Promise( (resolve, reject)  => {
-		// 	return reject()
-		// })
 		return Promise.reject()
 	}
 
@@ -118,9 +114,6 @@ UserSchema.methods.removeToken = function( token ){
   return user.update({
 		$pull:{
 			tokens:{ token }
-			// tokens:{
-			// 	token:token
-			// }
 		}
 	})
 }
